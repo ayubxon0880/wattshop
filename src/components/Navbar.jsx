@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Menu, X, ShoppingCart } from "lucide-react"; // Optional icons (npm i lucide-react)
+import { Menu, X, ShoppingCart } from "lucide-react";
 
 export default function Navbar({ cartCount }) {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
-        <header className="bg-white border-b shadow-sm sticky top-0 z-50">
+        <header className="bg-white dark:bg-gray-900 border-b shadow-sm sticky top-0 z-50 transition-colors">
             <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
 
                 {/* Logo */}
@@ -14,7 +14,9 @@ export default function Navbar({ cartCount }) {
                     <div className="w-10 h-10 bg-gradient-to-br from-indigo-500 to-pink-500 rounded flex items-center justify-center text-white font-bold">
                         E
                     </div>
-                    <span className="font-semibold text-lg">ElmStore</span>
+                    <span className="font-semibold text-lg text-gray-800 dark:text-gray-100">
+            ElmStore
+          </span>
                 </Link>
 
                 {/* Desktop Menu */}
@@ -22,13 +24,12 @@ export default function Navbar({ cartCount }) {
                     <NavLink to="/">Home</NavLink>
                     <NavLink to="/shop">Shop</NavLink>
                     <NavLink to="/about">About</NavLink>
-
                     <CartButton cartCount={cartCount} />
                 </nav>
 
                 {/* Mobile Menu Button */}
                 <button
-                    className="md:hidden p-2 rounded hover:bg-gray-100"
+                    className="md:hidden p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-800"
                     onClick={() => setIsOpen(!isOpen)}
                 >
                     {isOpen ? <X size={22} /> : <Menu size={22} />}
@@ -37,7 +38,7 @@ export default function Navbar({ cartCount }) {
 
             {/* Mobile Dropdown */}
             {isOpen && (
-                <div className="md:hidden bg-white border-t animate-slideDown">
+                <div className="md:hidden bg-white dark:bg-gray-900 border-t animate-slideDown">
                     <div className="flex flex-col p-4 gap-4">
                         <NavLink to="/" onClick={() => setIsOpen(false)}>Home</NavLink>
                         <NavLink to="/shop" onClick={() => setIsOpen(false)}>Shop</NavLink>
@@ -50,13 +51,12 @@ export default function Navbar({ cartCount }) {
     );
 }
 
-/* Reusable NavLink Component */
 function NavLink({ to, children, onClick }) {
     return (
         <Link
             to={to}
             onClick={onClick}
-            className="text-gray-700 hover:text-indigo-600 transition-colors"
+            className="text-gray-700 dark:text-gray-200 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
         >
             {children}
         </Link>
@@ -69,10 +69,10 @@ function CartButton({ cartCount, onClick }) {
         <Link
             to="/cart"
             onClick={onClick}
-            className="relative inline-flex items-center gap-2 border px-3 py-1.5 rounded hover:bg-gray-50 transition"
+            className="relative inline-flex items-center gap-2 border px-3 py-1.5 rounded hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
         >
             <ShoppingCart size={18} />
-            <span>Cart</span>
+            <span className="text-gray-700 dark:text-gray-200">Cart</span>
             {cartCount > 0 && (
                 <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center shadow">
           {cartCount}
