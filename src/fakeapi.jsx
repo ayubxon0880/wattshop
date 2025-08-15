@@ -1,22 +1,35 @@
-export const sampleProducts = [
-    { id: '1', title: 'Comfort Hoodie', price: 39.99, image: 'https://splash.uz/frontend/images/png/product2.png', category: 'apparel', description: 'Soft, cozy hoodie for everyday wear.' },
-    { id: '2', title: 'Running Sneakers', price: 89.95, image: 'https://splash.uz/frontend/images/png/product2.png', category: 'shoes', description: 'Lightweight sneakers built for speed.' },
-    { id: '3', title: 'Classic Watch', price: 129.00, image: 'https://splash.uz/frontend/images/png/product2.png', category: 'accessories', description: 'Minimalist watch with leather strap.' },
-    { id: '4', title: 'Baseball Cap', price: 19.5, image: 'https://splash.uz/frontend/images/png/product2.png', category: 'accessories', description: 'Adjustable cap for sunny days.' },
-    { id: '5', title: 'Denim Jacket', price: 74.99, image: 'https://splash.uz/frontend/images/png/product2.png', category: 'apparel', description: 'Durable denim jacket with modern cut.' },
-    { id: '6', title: 'Backpack Pro', price: 59.0, image: 'https://splash.uz/frontend/images/png/product2.png', category: 'bags', description: 'Weather-resistant backpack with padded laptop sleeve.' }
-]
+// fakeapi.jsx
+export const sampleCatalogs = [
+    { id: "lamp", title: "Lampochkalar", image: "https://cdn.britannica.com/88/212888-050-6795342C/study-lamp-electrical-cord.jpg" },
+    { id: "socket", title: "Rozetkalar", image: "https://cdn.britannica.com/88/212888-050-6795342C/study-lamp-electrical-cord.jpg" },
+    { id: "cable", title: "Kabellar", image: "https://cdn.britannica.com/88/212888-050-6795342C/study-lamp-electrical-cord.jpg" }
+];
 
-export function fakeFetchProducts(delay = 500) {
-    return new Promise((resolve) => setTimeout(() => resolve([...sampleProducts]), delay))
+export const sampleProducts = [
+    { id: 1, title: "LED Lampochka 12W", price: 25000, category: "lamp", image: "https://cdn.britannica.com/88/212888-050-6795342C/study-lamp-electrical-cord.jpg", description: "Energiya tejamkor LED lampochka." },
+    { id: 2, title: "E27 Lampochka", price: 15000, category: "lamp", image: "https://cdn.britannica.com/88/212888-050-6795342C/study-lamp-electrical-cord.jpg", description: "Oddiy E27 patronli lampochka." },
+    { id: 3, title: "Ikki joyli rozetka", price: 18000, category: "socket", image: "https://cdn.britannica.com/88/212888-050-6795342C/study-lamp-electrical-cord.jpg", description: "Ikki joyli zamonaviy rozetka." },
+    { id: 4, title: "Ethernet kabel 1m", price: 12000, category: "cable", image: "https://cdn.britannica.com/88/212888-050-6795342C/study-lamp-electrical-cord.jpg", description: "Internet uchun yuqori sifatli kabel." },
+];
+
+export function fakeFetchCatalogs() {
+    return new Promise((resolve) => {
+        setTimeout(() => resolve(sampleCatalogs), 400);
+    });
 }
 
-export function fakeFetchProductById(id, delay = 400) {
-    return new Promise((resolve, reject) => setTimeout(() => {
-        const p = sampleProducts.find(s => s.id === id)
-        if (p) resolve({ ...p })
-        else reject(new Error('Product not found'))
-    }, delay))
+export function fakeFetchProductsByCategory(categoryId) {
+    return new Promise((resolve) => {
+        setTimeout(() => resolve(sampleProducts.filter(p => p.category === categoryId)), 400);
+    });
+}
+
+export async function fakeFetchProductById(id) {
+    const product = sampleProducts.find(p => String(p.id) === String(id));
+    if (!product) {
+        throw new Error("Product not found");
+    }
+    return product;
 }
 
 /* ----------------- Utilities ----------------- */

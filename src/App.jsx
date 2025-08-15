@@ -75,7 +75,7 @@ export function App() {
 
                 <div className="flex-1">
                     <Routes>
-                        <Route path="/" element={<Profile/>}/>
+                        <Route path="/" element={<Home/>}/>
                         <Route path="/shop" element={<Shop onAdd={addToCart}/>}/>
                         <Route
                             path="/product/:id"
