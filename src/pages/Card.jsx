@@ -24,14 +24,34 @@ export default function Cart({ cart, onRemove, onUpdateQty }) {
         message += `💰 <b>Jami:</b> ${currency(total)}\n`;
         message += `👤 ${user.first_name} (${user.id})`;
 
-        // Bot orqali foydalanuvchiga yuborish
+        // Bot orqali foydalanuvchiga yuborish + inline button
         await fetch(`https://api.telegram.org/bot7229292975:AAFqUv-MeAOdH12F0susyhZJ7t4ioOXTK7c/sendMessage`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
-                chat_id: user.id, // to'g'ridan-to'g'ri foydalanuvchiga
+                chat_id: user.id, // foydalanuvchiga yuborish
                 text: message,
-                parse_mode: "HTML"
+                parse_mode: "HTML",
+                reply_markup: {
+                    inline_keyboard: [
+                        [
+                            {
+                                text: "✅ Tasdiqlash",
+                                callback_data: "confirm_order"
+                            },
+                            {
+                                text: "❌ Bekor qilish",
+                                callback_data: "cancel_order"
+                            }
+                        ],
+                        [
+                            {
+                                text: "📦 Buyurtmalarim",
+                                url: "https://wattshop.vercel.app/orders"
+                            }
+                        ]
+                    ]
+                }
             }),
         });
 
