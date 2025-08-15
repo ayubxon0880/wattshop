@@ -7,6 +7,7 @@ export default function ProductPage({ onAdd }) {
     const [product, setProduct] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [added, setAdded] = useState(false);
 
     useEffect(() => {
         setLoading(true);
@@ -23,6 +24,12 @@ export default function ProductPage({ onAdd }) {
     if (loading) return <main className="max-w-6xl mx-auto px-4 py-12">Loading product...</main>
     if (error) return <main className="max-w-6xl mx-auto px-4 py-12 text-red-500">{error}</main>
 
+    const handleAdd = () => {
+        onAdd(product);
+        setAdded(true);
+        setTimeout(() => setAdded(false), 2000); // 2 sekunddan keyin yo‘qoladi
+    };
+
     return (
         <main className="max-w-6xl mx-auto px-4 py-12 text-gray-900 dark:text-gray-100">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -37,13 +44,19 @@ export default function ProductPage({ onAdd }) {
                     <h1 className="text-2xl font-bold">{product.title}</h1>
                     <div className="mt-3 text-2xl font-bold">{currency(product.price)}</div>
                     <p className="mt-4 text-gray-700 dark:text-gray-300">{product.description}</p>
-                    <div className="mt-6">
+                    <div className="mt-6 relative">
                         <button
-                            onClick={() => onAdd(product)}
+                            onClick={handleAdd}
                             className="px-5 py-3 bg-indigo-600 text-white rounded hover:bg-indigo-700 transition"
                         >
                             Add to cart
                         </button>
+
+                        {added && (
+                            <div className="absolute top-[-40px] left-0 bg-green-600 text-white text-sm px-3 py-1 rounded shadow">
+                                ✅ Savatchaga qo‘shildi
+                            </div>
+                        )}
                     </div>
                 </div>
             </div>
