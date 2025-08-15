@@ -17,31 +17,31 @@ export default function App() {
         }
     });
 
-    const [theme, setTheme] = useState("light"); // telegram theme
+    // const [theme, setTheme] = useState("light"); // telegram theme
 
     useEffect(() => {
         localStorage.setItem("cart", JSON.stringify(cart));
     }, [cart]);
 
-    useEffect(() => {
-        if (window.Telegram?.WebApp) {
-            const tg = window.Telegram.WebApp;
+    // useEffect(() => {
+    //     if (window.Telegram?.WebApp) {
+    //         const tg = window.Telegram.WebApp;
+    //
+    //         setTheme(tg.colorScheme === "dark" ? "dark" : "light");
+    //
+    //         tg.onEvent("themeChanged", () => {
+    //             setTheme(tg.colorScheme === "dark" ? "dark" : "light");
+    //         });
+    //     }
+    // }, []);
 
-            setTheme(tg.colorScheme === "dark" ? "dark" : "light");
-
-            tg.onEvent("themeChanged", () => {
-                setTheme(tg.colorScheme === "dark" ? "dark" : "light");
-            });
-        }
-    }, []);
-
-    useEffect(() => {
-        if (theme === "dark") {
-            document.documentElement.classList.add("dark");
-        } else {
-            document.documentElement.classList.remove("dark");
-        }
-    }, [theme]);
+    // useEffect(() => {
+    //     if (theme === "dark") {
+    //         document.documentElement.classList.add("dark");
+    //     } else {
+    //         document.documentElement.classList.remove("dark");
+    //     }
+    // }, [theme]);
 
     function addToCart(product) {
         setCart((prev) => {
