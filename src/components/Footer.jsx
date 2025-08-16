@@ -3,7 +3,7 @@ export default function Footer() {
         <footer className="bg-gray-50 dark:bg-gray-900 border-t mt-12 transition-colors">
             <div className="max-w-6xl mx-auto px-4 py-8 flex flex-col md:flex-row justify-between gap-6">
                 <div>
-                    <h3 className="font-bold text-lg text-gray-800 dark:text-gray-100">ElmStore</h3>
+                    <h3 className="font-bold text-lg text-gray-800 dark:text-gray-100">WattShop</h3>
                     <p className="text-sm text-gray-600 dark:text-gray-400">
                         Quality goods for everyday life.
                     </p>
@@ -30,7 +30,7 @@ export default function Footer() {
             </div>
 
             <div className="text-center text-xs text-gray-500 dark:text-gray-400 pb-4">
-                © {new Date().getFullYear()} ElmStore. All rights reserved.
+                © {new Date().getFullYear()} WattShop. All rights reserved.
             </div>
         </footer>
     );

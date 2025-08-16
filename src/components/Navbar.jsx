@@ -25,10 +25,10 @@ export default function Navbar({ cartCount }) {
                 {/* Logo */}
                 <Link to="/" className="flex items-center gap-2">
                     <div className="w-10 h-10 bg-gradient-to-br from-indigo-500 to-pink-500 rounded flex items-center justify-center text-white font-bold">
-                        E
+                        W
                     </div>
                     <span className="font-semibold text-lg text-gray-800 dark:text-gray-100">
-                        ElmStore
+                        WattShop
                     </span>
                 </Link>
 
